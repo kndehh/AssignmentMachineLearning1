@@ -47,7 +47,7 @@ for key in ["page", "df", "X_train", "X_test", "y_train", "y_test",
             "scaler", "scaler_name", "features", "models", "test_size",
             "random_state", "eval_results"]:
     if key not in st.session_state:
-        st.session_state[key] = "EDA" if key == "page" else None
+        st.session_state[key] = "Home" if key == "page" else None
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 def get_features(df):
@@ -98,6 +98,7 @@ with st.sidebar:
     st.markdown("**Machine Learning App**")
     st.markdown("---")
     pages = {
+        "🏠 Home": "Home",
         "📊 EDA": "EDA",
         "⚙️ Preprocessing": "Preprocessing",
         "🤖 Model Selection & Evaluation": "Model",
@@ -110,9 +111,71 @@ with st.sidebar:
             st.session_state.page = key
             st.rerun()
     st.markdown("---")
-    st.markdown("**Dataset:** Concrete Compressive Strength")
-    st.markdown("Dataset `Concrete_Data.xls` dimuat otomatis.")
 
+
+# =============================================================================
+# PAGE 0 — HOME
+# =============================================================================
+if st.session_state.page == "Home":
+    st.markdown("""
+    <style>
+        .home-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px 40px;
+        }
+        .home-headline {
+            font-size: 28px;
+            font-weight: 700;
+            color: #4fc3f7;
+            line-height: 1.4;
+            max-width: 750px;
+            margin-bottom: 16px;
+        }
+        .home-subtext {
+            font-size: 17px;
+            color: #b0bec5;
+            max-width: 700px;
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+        .home-img {
+            border-radius: 20px;
+            max-width: 680px;
+            width: 100%;
+            box-shadow: 0 8px 32px rgba(79,195,247,0.15);
+            margin-bottom: 36px;
+        }
+    </style>
+    """, unsafe_allow_html=True)
+
+    col_l, col_c, col_r = st.columns([1, 3, 1])
+    with col_c:
+        st.markdown('''
+        <div class="home-container">
+            <div class="home-headline">
+                Have you ever think if your concrete compressive strength is strong enough to support the load?
+            </div>
+            <div class="home-subtext">
+                Understanding how strong a concrete mix will be is crucial for building safe and reliable structures.
+                Using machine learning, it could help predict your concrete strength based on your materials input.
+            </div>
+        </div>
+        ''', unsafe_allow_html=True)
+
+        st.image(
+            "homepageImg.png",
+            use_container_width=True,
+        )
+
+        st.markdown("<br>", unsafe_allow_html=True)
+
+        if st.button("🚀 Get Started", type="primary", use_container_width=True, key="btn_get_started"):
+            st.session_state.page = "EDA"
+            st.rerun()
 
 # =============================================================================
 # PAGE 1 — EDA
