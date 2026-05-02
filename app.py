@@ -115,7 +115,7 @@ with st.sidebar:
     st.link_button('UCI Machine Learning Repository', "https://archive.ics.uci.edu/dataset/165/concrete+compressive+strength")
     st.markdown("---")
     st.markdown("""
-    ## Made By:
+    ## Made By BINUS University Students:
     - Albertus Adrian W.
     - Darren Star L.
     - Jonathan Raffael
