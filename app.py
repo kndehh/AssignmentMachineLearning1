@@ -14,7 +14,7 @@ from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
 
 # ── Page Config ───────────────────────────────────────────────────────────────
 st.set_page_config(
-    page_title="Concrete Strength Predictor",
+    page_title="Predicting the Compressive Strength of Concrete",
     page_icon="🏗️",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -111,7 +111,17 @@ with st.sidebar:
             st.session_state.page = key
             st.rerun()
     st.markdown("---")
-
+    st.markdown('Dataset Source: ')
+    st.link_button('UCI Machine Learning Repository', "https://archive.ics.uci.edu/dataset/165/concrete+compressive+strength")
+    st.markdown("---")
+    st.markdown("""
+    ## Made By:
+    - Albertus Adrian W.
+    - Darren Star L.
+    - Jonathan Raffael
+    - Steven Hosea
+    - Nicholas Driyadis T.
+    """)
 
 # =============================================================================
 # PAGE 0 — HOME
@@ -176,6 +186,8 @@ if st.session_state.page == "Home":
         if st.button("🚀 Get Started", type="primary", use_container_width=True, key="btn_get_started"):
             st.session_state.page = "EDA"
             st.rerun()
+
+        st.markdown("<br>", unsafe_allow_html=True)
 
 # =============================================================================
 # PAGE 1 — EDA
